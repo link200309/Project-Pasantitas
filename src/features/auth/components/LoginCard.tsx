@@ -4,11 +4,11 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardAction,
   CardContent,
   CardFooter,
 } from "@/shared/components/ui";
 import InputForm from "@/shared/components/InputForm";
+import Image from "next/image";
 
 export default function LoginCard() {
   return (
@@ -23,14 +23,26 @@ export default function LoginCard() {
       </CardHeader>
       <CardContent className="space-y-5">
         <InputForm label="Correo electrónico" placeholder="Ingresa tu correo" />
-        <InputForm label="Contraseña" placeholder="Ingresa tu contraseña" />
+        <div>
+          <InputForm label="Contraseña" placeholder="Ingresa tu contraseña" />
+          <u className="text-caption no-underline hover:underline cursor-pointer">
+            ¿Olvidaste tu contraseña?
+          </u>
+        </div>
       </CardContent>
 
-      <CardFooter className="flex flex-col gap-2">
+      <CardFooter className="flex flex-col gap-5">
         <Button type="submit" className="w-full">
           Iniciar sesión
         </Button>
+
+        <div className="relative w-full flex flex-col items-center justify-center">
+          <div className="border border-gray-800 absolute inset-0"></div>
+          <span className="absolute px-3 bg-card">o</span>
+        </div>
+
         <Button variant={"outline"} className="w-full">
+          <Image src="/google.svg" alt="logo" width={15} height={15} />
           Iniciar sesión con google
         </Button>
 
