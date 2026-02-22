@@ -1,3 +1,4 @@
+"use client";
 import {
   Button,
   Card,
@@ -9,6 +10,9 @@ import {
 } from "@/shared/components/ui";
 import InputForm from "@/shared/components/InputForm";
 import Image from "next/image";
+import Divider from "@/shared/components/Divider";
+import { Mail, Lock } from "lucide-react";
+import Link from "next/link";
 
 export default function LoginCard() {
   return (
@@ -22,9 +26,19 @@ export default function LoginCard() {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">
-        <InputForm label="Correo electrónico" placeholder="Ingresa tu correo" />
+        <InputForm
+          type={"email"}
+          label="Correo electrónico"
+          placeholder="example@gmail.com"
+          Icon={Mail}
+        />
         <div>
-          <InputForm label="Contraseña" placeholder="Ingresa tu contraseña" />
+          <InputForm
+            type="password"
+            label="Contraseña"
+            placeholder="Ingresa tu contraseña"
+            Icon={Lock}
+          />
           <u className="text-caption no-underline hover:underline cursor-pointer">
             ¿Olvidaste tu contraseña?
           </u>
@@ -36,10 +50,7 @@ export default function LoginCard() {
           Iniciar sesión
         </Button>
 
-        <div className="relative w-full flex flex-col items-center justify-center">
-          <div className="border border-gray-800 absolute inset-0"></div>
-          <span className="absolute px-3 bg-card">o</span>
-        </div>
+        <Divider />
 
         <Button variant={"outline"} className="w-full">
           <Image src="/google.svg" alt="logo" width={15} height={15} />
@@ -48,9 +59,12 @@ export default function LoginCard() {
 
         <div className="text-caption space-x-2">
           <span>¿No tienes cuenta?</span>
-          <u className="text-primary no-underline hover:underline cursor-pointer">
+          <Link
+            href={"/register"}
+            className="text-primary no-underline hover:underline cursor-pointer"
+          >
             Registrate gratis
-          </u>
+          </Link>
         </div>
       </CardFooter>
     </Card>
