@@ -11,6 +11,7 @@ interface InputFormProps {
   Icon?: LucideIcon;
   className?: string;
   additionalClassName?: string;
+  name?: string;
 }
 
 export default function InputForm({
@@ -21,6 +22,7 @@ export default function InputForm({
   Icon,
   className,
   additionalClassName,
+  name,
 }: InputFormProps) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -41,6 +43,7 @@ export default function InputForm({
           required={required}
           type={inputType}
           className={`${className} ${Icon ? "pl-10" : ""}`}
+          name={name}
         />
 
         {type === "password" && (
