@@ -2,8 +2,14 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* Permite crear una variable personalizada de tailwind llamada dark */
+/* La expresion de adentro quiere decir que la variante dark se aplica cuando se encuentra dentro de algo que tiene la 
+clase dark */ 
 @custom-variant dark (&:is(.dark *));
 
+/*Aca le decimos a tailwind que queremos registrar los siguiente valores
+como parte del tema de tailwind*/
+/*Foreground quiere decir el contenido que esta en primer plano*/
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -24,7 +30,7 @@
   --color-chart-3: var(--chart-3);
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
+  --color-ring: var(--ring); /*El color del contorno al hacer focus*/
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
@@ -68,7 +74,88 @@
   --text-caption: 12px;
 }
 
+/*Elemento raiz del documento, las variables aqui estan disponibles globalmente*/
 :root {
+  --radius: 0.625rem;
+
+  --background: oklch(0.975 0.008 250);
+  --foreground: oklch(0.20 0.025 260);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.20 0.025 260);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.20 0.025 260);
+
+  --primary: oklch(0.52 0.22 270);
+  --primary-foreground: oklch(0.99 0 0);
+
+  --secondary: oklch(0.96 0.012 250);
+  --secondary-foreground: oklch(0.25 0.03 260);
+
+  --muted: oklch(0.96 0.012 250);
+  --muted-foreground: oklch(0.55 0.025 250);
+
+  --accent: oklch(0.72 0.16 160);
+  --accent-foreground: oklch(0.22 0.04 160);
+
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.90 0.018 250);
+  --input: oklch(0.90 0.018 250);
+
+  --ring: oklch(0.52 0.22 270);
+
+  --chart-1: oklch(0.58 0.22 270);
+  --chart-2: oklch(0.65 0.16 185);
+  --chart-3: oklch(0.55 0.14 230);
+  --chart-4: oklch(0.72 0.18 85);
+  --chart-5: oklch(0.65 0.19 40);
+
+
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.25 0.025 260);
+
+  --sidebar-primary: oklch(0.52 0.22 270);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+
+  --sidebar-accent: oklch(0.95 0.018 270);
+  --sidebar-accent-foreground: oklch(0.25 0.04 270);
+
+  --sidebar-border: oklch(0.90 0.018 250);
+  --sidebar-ring: oklch(0.52 0.22 270);
+}
+
+@utility text-display {
+  font-size: var(--text-display);
+  line-height: var(--leading-display);
+}
+
+@utility text-page-title {
+  font-size: var(--text-page-title);
+  line-height: var(--leading-page-title);
+}
+
+/*Tailwind funciona mediante capas, estamos poniendo estilos a la cada base*/
+/*apply permite utilizar clases tailwind dentro de CSS*/
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+body {
+  background-image: url("/bg.avif");
+  transition: background-color 0.3s ease;
+}
+
+
+/*Normalmente en :root es para los valores por defecto y .dark para sobreescribirlos*/
+.dark {
   --radius: 0.625rem;
   --background: oklch(0.14 0.02 260); /*Fondo*/
   --foreground: oklch(0.98 0 0); /*Primer plano, texto*/
@@ -117,39 +204,4 @@
   --sidebar-accent-foreground: oklch(0.96 0 0);
   --sidebar-border: oklch(0.28 0.02 260);
   --sidebar-ring: oklch(0.64 0.19 240);
-}
-
-@utility text-display {
-  font-size: var(--text-display);
-  line-height: var(--leading-display);
-}
-
-@utility text-page-title {
-  font-size: var(--text-page-title);
-  line-height: var(--leading-page-title);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-body {
-  background-image: url("/bg.avif");
-  transition: background-color 0.3s ease;
-}
-
-.dark {
-  --sidebar: hsl(240 5.9% 10%);
-  --sidebar-foreground: hsl(240 4.8% 95.9%);
-  --sidebar-primary: hsl(224.3 76.3% 48%);
-  --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(240 3.7% 15.9%);
-  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-  --sidebar-border: hsl(240 3.7% 15.9%);
-  --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
