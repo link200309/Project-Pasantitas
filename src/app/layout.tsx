@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import {Providers} from "@/shared/components"
 
 const inter = Inter({
   variable: "--font-inter",
@@ -22,11 +23,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="es">
+      <Providers>
       <body className={`${inter.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
+      </Providers>
     </html>
   );
 }

@@ -1,3 +1,12 @@
+'use client';
+
+//React
+import Link from "next/link";
+import Image from "next/image";
+import { ChevronsUpDown, LogOut, User, Telescope, FileUser, Bookmark, Sun, Moon, type LucideIcon } from "lucide-react";
+import {useUiStore, Theme} from "@/store"
+
+//Components
 import {
   Sidebar,
   SidebarContent,
@@ -13,11 +22,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   SidebarTrigger,
+  Switch
 } from "@/shared/components/ui";
-import { ChevronsUpDown, LogOut, User, type LucideIcon } from "lucide-react";
-import Link from "next/link";
 import Adachi from "@/assets/adachi.webp";
-import Image from "next/image";
 
 interface GroupOption {
   groupName: string;
@@ -28,11 +35,26 @@ interface GroupOption {
   }[];
 }
 
-interface AppSidebarProps {
-  options: GroupOption[];
-}
+const options : GroupOption[]= [
+  {
+    groupName: "Pasantías",
+    navLinks: [
+      { icon: Telescope, label: "Explorar", url: "/internships" },
+      { icon: FileUser, label: "Mis postulaciones", url: "/applications" },
+      {
+        icon: Bookmark,
+        label: "Guardados",
+        url: "/applications",
+      },
+    ],
+  },
+];
 
-export default function AppSidebar({ options = [] }: AppSidebarProps) {
+
+export default function AppSidebar() {
+
+  const {theme, toggleTheme} = useUiStore();
+
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="flex-row justify-between">
@@ -62,6 +84,13 @@ export default function AppSidebar({ options = [] }: AppSidebarProps) {
 
       <SidebarFooter>
         <SidebarMenu>
+
+        <SidebarMenuItem className="flex gap-2 items-center justify-center">
+          <Sun className="text-yellow-600 fill-yellow-500"/>
+          <Switch onClick={() => toggleTheme()} checked={theme === Theme.DARK}/>    
+            <Moon className="text-blue-600 fill-blue-500"/>
+        </SidebarMenuItem>
+
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
