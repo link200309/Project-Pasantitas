@@ -1,4 +1,4 @@
-import InternshipCard from "./InternshiptCard";
+import { InternshipCard } from "./InternshiptCard";
 
 const internshipsMock = [
   {
@@ -7,6 +7,9 @@ const internshipsMock = [
     location: "Ciudad de México",
     workMode: "Remoto",
     postedAt: "Hace 2 días",
+    salary: "200 USD",
+    duration: "6 meses",
+    postulate: true,
   },
   {
     title: "Desarrollador Backend",
@@ -14,6 +17,9 @@ const internshipsMock = [
     location: "Monterrey",
     workMode: "Presencial",
     postedAt: "Hace 1 semana",
+    salary: "200 USD",
+    duration: "6 meses",
+    postulate: true,
   },
   {
     title: "Diseñador UX/UI",
@@ -21,6 +27,9 @@ const internshipsMock = [
     location: "Guadalajara",
     workMode: "Híbrido",
     postedAt: "Hace 3 días",
+    salary: "200 USD",
+    duration: "6 meses",
+    postulate: true,
   },
   {
     title: "Analista de Datos",
@@ -28,6 +37,9 @@ const internshipsMock = [
     location: "Buenos Aires",
     workMode: "Remoto",
     postedAt: "Hace 5 días",
+    salary: "200 USD",
+    duration: "6 meses",
+    postulate: true,
   },
   {
     title: "Ingeniero DevOps",
@@ -35,6 +47,9 @@ const internshipsMock = [
     location: "Bogotá",
     workMode: "Híbrido",
     postedAt: "Hace 1 día",
+    salary: "200 USD",
+    duration: "6 meses",
+    postulate: true,
   },
   {
     title: "Científico de Datos",
@@ -42,6 +57,9 @@ const internshipsMock = [
     location: "Santiago de Chile",
     workMode: "Remoto",
     postedAt: "Hace 4 días",
+    salary: "200 USD",
+    duration: "6 meses",
+    postulate: true,
   },
   {
     title: "Ingeniero de Machine Learning",
@@ -49,6 +67,9 @@ const internshipsMock = [
     location: "Lima",
     workMode: "Híbrido",
     postedAt: "Hace 2 días",
+    salary: "200 USD",
+    duration: "6 meses",
+    postulate: true,
   },
   {
     title: "Desarrollador Mobile",
@@ -56,6 +77,9 @@ const internshipsMock = [
     location: "Ciudad de México",
     workMode: "Presencial",
     postedAt: "Hace 6 días",
+    salary: "200 USD",
+    duration: "6 meses",
+    postulate: true,
   },
   {
     title: "Ingeniero de Software",
@@ -63,21 +87,17 @@ const internshipsMock = [
     location: "Medellín",
     workMode: "Remoto",
     postedAt: "Hace 3 días",
+    salary: "200 USD",
+    duration: "6 meses",
+    postulate: true,
   },
 ];
 
-export default function InternshipList() {
+export function InternshipList() {
   return (
-    <section>
+    <section className="w-full">
       {internshipsMock.map((intership, index) => (
-        <InternshipCard
-          key={index}
-          title={intership.title}
-          company={intership.company}
-          location={intership.location}
-          workMode={intership.workMode}
-          postedAt={intership.postedAt}
-        />
+        <InternshipCard key={index} intership={intership} />
       ))}
     </section>
   );

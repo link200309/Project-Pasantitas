@@ -9,7 +9,7 @@ export default function CandidateLayout({ children }: CandidateLayoutProps) {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main>{children}</main>
+      <main className="p-7 w-full">{children}</main>
     </SidebarProvider>
   );
 }
