@@ -30,7 +30,7 @@ interface Props {
 
 export function InternshipDetail({ slug }: Props) {
   return (
-    <Card>
+    <Card className="h-fit sticky top-27">
       <CardHeader className="flex gap-5 items-center">
         <Image
           src={jalaLogo}

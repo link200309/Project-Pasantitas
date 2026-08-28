@@ -3,10 +3,15 @@ import {
   InternshipList,
 } from "@/features/internships/components";
 
+import { AppNavbar } from "@/shared/components";
+
 export default function InternshipsPage() {
   return (
-    <section className="overflow-hidden">
-      <h2 className="text-section-title font-bold">Pagina de pasantias</h2>
+    <section>
+      <AppNavbar
+        title="Explorar pasantias"
+        description="Catalogo de pasantias en empresas verificadas"
+      />
       <div className="grid grid-cols-[40%_1fr] gap-5">
         <InternshipList />
         <InternshipDetail slug="hola" />

@@ -1,10 +1,21 @@
-'use client';
+"use client";
 
 //React
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { ChevronsUpDown, LogOut, User, Telescope, FileUser, Bookmark, Sun, Moon, type LucideIcon } from "lucide-react";
-import {useUiStore, Theme} from "@/store"
+import {
+  ChevronsUpDown,
+  LogOut,
+  User,
+  Telescope,
+  FileUser,
+  Bookmark,
+  Sun,
+  Moon,
+  type LucideIcon,
+} from "lucide-react";
+import { useUiStore, Theme } from "@/store";
 
 //Components
 import {
@@ -22,9 +33,11 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   SidebarTrigger,
-  Switch
+  Switch,
+  Separator,
 } from "@/shared/components/ui";
 import Adachi from "@/assets/adachi.webp";
+import { cn } from "@/lib/utils";
 
 interface GroupOption {
   groupName: string;
@@ -35,11 +48,11 @@ interface GroupOption {
   }[];
 }
 
-const options : GroupOption[]= [
+const options: GroupOption[] = [
   {
     groupName: "Pasantías",
     navLinks: [
-      { icon: Telescope, label: "Explorar", url: "/internships" },
+      { icon: Telescope, label: "Explorar pasantias", url: "/internships" },
       { icon: FileUser, label: "Mis postulaciones", url: "/applications" },
       {
         icon: Bookmark,
@@ -50,17 +63,25 @@ const options : GroupOption[]= [
   },
 ];
 
-
-export default function AppSidebar() {
-
-  const {theme, toggleTheme} = useUiStore();
+export function AppSidebar() {
+  const pathname = usePathname();
+  const { theme, toggleTheme } = useUiStore();
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader className="flex-row justify-between">
-        <span className="group-data-[collapsible=icon]:hidden">Pasantitas</span>
+      <SidebarHeader className="flex-row items-center gap-7">
+        <Image
+          src={"/logo-main.png"}
+          width={155}
+          height={155}
+          alt="adachi_profile"
+          className="rounded-full object-cover group-data-[collapsible=icon]:hidden transition-all"
+        />
+
         <SidebarTrigger />
       </SidebarHeader>
+
+      <Separator />
 
       <SidebarContent>
         {options.map((option: GroupOption) => (
@@ -70,7 +91,14 @@ export default function AppSidebar() {
               {option.navLinks.map((navLink, index) => (
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton asChild>
-                    <Link href={navLink.url}>
+                    <Link
+                      href={navLink.url}
+                      className={cn(
+                        "",
+                        pathname === navLink.url &&
+                          "bg-secondary border border-border",
+                      )}
+                    >
                       {<navLink.icon />}
                       {navLink.label}
                     </Link>
@@ -81,15 +109,18 @@ export default function AppSidebar() {
           </SidebarGroup>
         ))}
       </SidebarContent>
+      <Separator />
 
       <SidebarFooter>
         <SidebarMenu>
-
-        <SidebarMenuItem className="flex gap-2 items-center justify-center">
-          <Sun className="text-yellow-600 fill-yellow-500"/>
-          <Switch onClick={() => toggleTheme()} checked={theme === Theme.DARK}/>    
-            <Moon className="text-blue-600 fill-blue-500"/>
-        </SidebarMenuItem>
+          <SidebarMenuItem className="flex gap-2 items-center justify-center">
+            <Sun className="text-yellow-600 fill-yellow-500" />
+            <Switch
+              onClick={() => toggleTheme()}
+              checked={theme === Theme.DARK}
+            />
+            <Moon className="text-blue-600 fill-blue-500" />
+          </SidebarMenuItem>
 
           <SidebarMenuItem>
             <DropdownMenu>
