@@ -2,8 +2,9 @@
 
 //React
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
+
 import {
   ChevronsUpDown,
   LogOut,
@@ -35,9 +36,11 @@ import {
   SidebarTrigger,
   Switch,
   Separator,
-} from "@/shared/components/ui";
+  Button,
+} from "@/shared/components";
 import Adachi from "@/assets/adachi.webp";
 import { cn } from "@/lib/utils";
+import { authClient } from "@/lib/auth-client";
 
 interface GroupOption {
   groupName: string;
@@ -64,8 +67,17 @@ const options: GroupOption[] = [
 ];
 
 export function AppSidebar() {
+  const router = useRouter();
   const pathname = usePathname();
   const { theme, toggleTheme } = useUiStore();
+
+  const handleSignOut = async () => {
+    const { data, error } = await authClient.signOut();
+
+    if (!error) {
+      router.replace("/login");
+    }
+  };
 
   return (
     <Sidebar collapsible="icon">
@@ -149,10 +161,10 @@ export function AppSidebar() {
                   <span>Mi perfil</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href={"/login"}>
+                  <Button onClick={() => handleSignOut()} variant={"ghost"}>
                     <LogOut />
                     <span>Cerrar sesion</span>
-                  </Link>
+                  </Button>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
