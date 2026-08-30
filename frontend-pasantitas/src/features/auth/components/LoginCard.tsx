@@ -14,6 +14,7 @@ import Divider from "@/shared/components/Divider";
 import { Mail, Lock } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 export default function LoginCard() {
   const router = useRouter();
@@ -24,6 +25,14 @@ export default function LoginCard() {
     console.log(Object.fromEntries(formData));
 
     router.push("/internships");
+  };
+
+  const handleGoogleSignIn = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/internships",
+      errorCallbackURL: "/login",
+    });
   };
 
   return (
@@ -69,7 +78,12 @@ export default function LoginCard() {
 
           <Divider />
 
-          <Button variant={"outline"} className="w-full">
+          <Button
+            variant={"outline"}
+            className="w-full cursor-pointer"
+            type="button"
+            onClick={() => handleGoogleSignIn()}
+          >
             <Image src="/google.svg" alt="logo" width={15} height={15} />
             Iniciar sesión con google
           </Button>
