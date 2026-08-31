@@ -6,10 +6,8 @@ import jalaLogo from "@/assets/jala-logo.png";
 import {
   Card,
   CardHeader,
-  CardFooter,
   CardTitle,
   CardContent,
-  CardDescription,
   Button,
 } from "@/shared/components";
 
@@ -18,9 +16,7 @@ import {
   MapPin,
   Laptop2,
   Clock,
-  Backpack,
   CheckCircle2,
-  GraduationCap,
   School2,
 } from "lucide-react";
 
