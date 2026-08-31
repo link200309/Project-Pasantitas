@@ -19,18 +19,18 @@ import { authClient } from "@/lib/auth-client";
 export default function LoginCard() {
   const router = useRouter();
 
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    console.log(Object.fromEntries(formData));
+  // const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   const formData = new FormData(e.currentTarget);
+  //   console.log(Object.fromEntries(formData));
 
-    router.push("/internships");
-  };
+  //   router.push("/internships");
+  // };
 
   const handleGoogleSignIn = async () => {
     const { data, error } = await authClient.signIn.social({
       provider: "google",
-      callbackURL: "/internships",
+      callbackURL: "/candidate/internships",
       errorCallbackURL: "/login",
     });
   };
@@ -46,7 +46,7 @@ export default function LoginCard() {
         </CardDescription>
       </CardHeader>
 
-      <form action="" onSubmit={handleSubmit} className="space-y-5">
+      <form className="space-y-5">
         <CardContent className="space-y-5">
           <InputForm
             type={"email"}

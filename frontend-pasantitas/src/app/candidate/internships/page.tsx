@@ -12,7 +12,7 @@ export default function InternshipsPage() {
         title="Explorar pasantias"
         description="Catalogo de pasantias en empresas verificadas"
       />
-      <div className="grid grid-cols-[40%_1fr] gap-5">
+      <div className="grid grid-cols-[40%_1fr] gap-5 px-7 py-2">
         <InternshipList />
         <InternshipDetail slug="hola" />
       </div>

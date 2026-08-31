@@ -127,22 +127,20 @@ app/
     login/page.tsx
     register/page.tsx
 
-  (candidate)/
+  candidate/
     layout.tsx
-    candidate/
-      profile/page.tsx
-      internships/page.tsx
-      internships/[id]/page.tsx
-      applications/page.tsx
+    profile/page.tsx
+    internships/page.tsx
+    internships/[id]/page.tsx
+    applications/page.tsx
 
-  (company)/
+  company/
     layout.tsx
-    company/
-      profile/page.tsx
-      internships/page.tsx
-      internships/new/page.tsx
-      internships/[id]/edit/page.tsx
-      internships/[id]/applicants/page.tsx
+    profile/page.tsx
+    internships/page.tsx
+    internships/new/page.tsx
+    internships/[id]/edit/page.tsx
+    internships/[id]/applicants/page.tsx
 
 src/
   features/

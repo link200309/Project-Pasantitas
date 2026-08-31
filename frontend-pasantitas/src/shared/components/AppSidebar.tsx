@@ -41,6 +41,7 @@ import {
 import Adachi from "@/assets/adachi.webp";
 import { cn } from "@/lib/utils";
 import { authClient } from "@/lib/auth-client";
+import { Role } from "../types";
 
 interface GroupOption {
   groupName: string;
@@ -51,12 +52,16 @@ interface GroupOption {
   }[];
 }
 
-const options: GroupOption[] = [
+const optionsCandidate: GroupOption[] = [
   {
-    groupName: "Pasantías",
+    groupName: "PASANTIAS",
     navLinks: [
-      { icon: Telescope, label: "Explorar pasantias", url: "/internships" },
-      { icon: FileUser, label: "Mis postulaciones", url: "/applications" },
+      {
+        icon: Telescope,
+        label: "Explorar Pasantias",
+        url: "/candidate/internships",
+      },
+      { icon: FileUser, label: "Mis Postulaciones", url: "/applications" },
       {
         icon: Bookmark,
         label: "Guardados",
@@ -65,11 +70,44 @@ const options: GroupOption[] = [
     ],
   },
 ];
+const optionsCompany: GroupOption[] = [
+  {
+    groupName: "PLATAFORMA",
+    navLinks: [
+      { icon: Telescope, label: "Mis pasantias", url: "/company/internships" },
+      {
+        icon: FileUser,
+        label: "Ver marketplace publico",
+        url: "/applications",
+      },
+      {
+        icon: Bookmark,
+        label: "Guardados",
+        url: "/applications",
+      },
+    ],
+  },
+  {
+    groupName: "GESTION DE LA CUENTA",
+    navLinks: [
+      {
+        icon: Telescope,
+        label: "Perfil de Empresa",
+        url: "/",
+      },
+    ],
+  },
+];
 
-export function AppSidebar() {
+interface Props {
+  role: Role;
+}
+
+export function AppSidebar({ role }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const { theme, toggleTheme } = useUiStore();
+  const options = Role.COMPANY === role ? optionsCompany : optionsCandidate;
 
   const handleSignOut = async () => {
     const { data, error } = await authClient.signOut();

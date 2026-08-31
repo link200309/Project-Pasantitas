@@ -1,4 +1,5 @@
 import { SidebarProvider, AppSidebar } from "@/shared/components";
+import { Role } from "@/shared/types";
 
 interface CandidateLayoutProps {
   children: React.ReactNode;
@@ -7,8 +8,8 @@ interface CandidateLayoutProps {
 export default function CandidateLayout({ children }: CandidateLayoutProps) {
   return (
     <SidebarProvider>
-      <AppSidebar />
-      <main className="px-7 py-2 w-full">{children}</main>
+      <AppSidebar role={Role.CANDIDATE} />
+      <main className="w-full">{children}</main>
     </SidebarProvider>
   );
 }
