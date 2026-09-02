@@ -1,4 +1,4 @@
-export interface Intership{
+export interface Internship{
     title: string,
     company: string;
     location: string;

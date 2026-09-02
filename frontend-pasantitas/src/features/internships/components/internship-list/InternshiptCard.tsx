@@ -4,11 +4,11 @@ import { MapPin } from "lucide-react";
 
 //Components
 import jalaLogo from "@/assets/jala-logo.png";
-import { Intership } from "../../types";
+import { Internship } from "../../types";
 import { Badge, Card } from "@/shared/components";
 
 interface InternshipCardProps {
-  intership: Intership;
+  intership: Internship;
 }
 
 export function InternshipCard({ intership }: InternshipCardProps) {

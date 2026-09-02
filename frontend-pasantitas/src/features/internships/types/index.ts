@@ -1,1 +1,1 @@
-export * from './intership-interface';
+export * from './internship-interface';
