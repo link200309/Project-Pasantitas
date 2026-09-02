@@ -11,4 +11,5 @@ export * from "./tooltip";
 export * from "./dropdown-menu";
 export * from "./switch";
 export * from "./badge";
+export * from "./select";
 
